@@ -116,8 +116,8 @@ const mockMiddlewareServices = (dispatch, mockData) => {
   if (!mockData || !mockData.serviceInstances) {
     return;
   }
-  const mockUsername = 'mockuser';
-  const mockLoginName = 'mockuser';
+  const mockUsername = 'localuser';
+  const mockLoginName = 'localuser';
   window.localStorage.setItem('currentUserName', mockUsername);
   window.localStorage.setItem('loginName', mockLoginName);
   mockData.serviceInstances.forEach(si => {
@@ -125,6 +125,10 @@ const mockMiddlewareServices = (dispatch, mockData) => {
       type: FULFILLED_ACTION(middlewareTypes.CREATE_WALKTHROUGH),
       payload: si
     });
+  });
+  dispatch({
+    type: FULFILLED_ACTION(middlewareTypes.GET_PROVISIONING_USER),
+    payload: {provisioningUser:mockUsername}
   });
 };
 
