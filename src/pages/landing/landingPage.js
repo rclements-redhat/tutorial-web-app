@@ -3,18 +3,18 @@ import PropTypes from 'prop-types';
 import { Grid, GridItem, Page, PageSection, PageSectionVariants, Tabs, Tab, TabContent } from '@patternfly/react-core';
 import { noop } from '../../common/helpers';
 import TutorialDashboard from '../../components/tutorialDashboard/tutorialDashboard';
-import InstalledAppsView from '../../components/installedAppsView/InstalledAppsView';
+// import InstalledAppsView from '../../components/installedAppsView/InstalledAppsView';
 import { connect, reduxActions } from '../../redux';
 import { RoutedConnectedMasthead } from '../../components/masthead/masthead';
 import { provisionAMQOnline, provisionAMQOnlineV4 } from '../../services/amqOnlineServices';
 import { currentUser } from '../../services/openshiftServices';
 import { DEFAULT_SERVICES } from '../../common/serviceInstanceHelpers';
-import { DISPLAY_SERVICES } from '../../services/middlewareServices';
-import { getOpenshiftHost } from '../../common/docsHelpers';
+// import { DISPLAY_SERVICES } from '../../services/middlewareServices';
+// import { getOpenshiftHost } from '../../common/docsHelpers';
 import {
   getUsersSharedNamespaceName,
   getUsersSharedNamespaceDisplayName,
-  isOpenShift4
+  // isOpenShift4
 } from '../../common/openshiftHelpers';
 
 class LandingPage extends React.Component {
@@ -75,16 +75,17 @@ class LandingPage extends React.Component {
   }
 
   handleLoad(event) {
-    if (window.location.href.indexOf('/solution-patterns') > -1) {
-      this.setState({ activeTabKey: 1 });
-      document.getElementById('pf-tab-1-solutionPatternsTab').click();
+    if (window.location.href.indexOf('/') > -1) {
+      this.setState({ activeTabKey: 0 });
+      document.getElementById('pf-tab-0-solutionPatternsTab').click();
     }
   }
 
   render() {
-    const { walkthroughServices, middlewareServices, user } = this.props;
-    const launchFn = isOpenShift4() ? this.handleServiceLaunchV4.bind(this) : this.handleServiceLaunch.bind(this);
-    const openshiftHost = getOpenshiftHost(middlewareServices);
+    const { walkthroughServices, user } = this.props;
+    // const { walkthroughServices, middlewareServices, user } = this.props;
+    // const launchFn = isOpenShift4() ? this.handleServiceLaunchV4.bind(this) : this.handleServiceLaunch.bind(this);
+    // const openshiftHost = getOpenshiftHost(middlewareServices);
     this.contentRef1 = React.createRef();
     this.contentRef2 = React.createRef();
 
@@ -98,16 +99,16 @@ class LandingPage extends React.Component {
             integrations with Solution Pattern examples.
           </p>
           <Tabs activeKey={this.state.activeTabKey} onSelect={this.handleTabClick}>
-            <Tab
+            {/* <Tab
               id="servicesTab"
               eventKey={0}
               title="All services"
               tabContentId="servicesTabSection"
               tabContentRef={this.contentRef1}
-            />
+            /> */}
             <Tab
               id="solutionPatternsTab"
-              eventKey={1}
+              eventKey={0}
               title="All Solution Patterns"
               tabContentId="solutionPatternsTabSection"
               tabContentRef={this.contentRef2}
@@ -116,7 +117,7 @@ class LandingPage extends React.Component {
         </PageSection>
         <PageSection className="pf-u-py-0 pf-u-pl-lg pf-u-pr-lg">
           <React.Fragment>
-            <TabContent
+            {/* <TabContent
               className="integr8ly__tab-content"
               eventKey={0}
               id="refTab1Section"
@@ -136,11 +137,11 @@ class LandingPage extends React.Component {
                   />
                 </GridItem>
               </Grid>
-            </TabContent>
+            </TabContent> */}
 
             <TabContent
               className="integr8ly__tab-content"
-              eventKey={1}
+              eventKey={0}
               id="refTab2Section"
               ref={this.contentRef2}
               aria-label="Tab item 2"
