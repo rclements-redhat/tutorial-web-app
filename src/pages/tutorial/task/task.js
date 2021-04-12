@@ -53,17 +53,21 @@ class TaskPage extends React.Component {
       const codeBlocks = this.rootDiv.current.querySelectorAll('pre');
       let sequenceNumber = 1;
       codeBlocks.forEach(block => {
-        ReactDOM.render(
-          <ClipboardCopy
-            id={sequenceNumber.toString()}
-            isReadOnly
-            variant={block.clientHeight > 40 ? ClipboardCopyVariant.expansion : null}
-            style={{ whiteSpace: 'pre-wrap' }}
-          >
-            {block.innerText}
-          </ClipboardCopy>,
-          block.parentNode
-        );
+        console.log(block.children);
+        if (block.children.length > 0 && block.children[0].nodeName === "CODE") {
+          ReactDOM.render(
+            <ClipboardCopy
+              id={sequenceNumber.toString()}
+              isReadOnly
+              isExpanded={block.clientHeight > 40 ? true : false}
+              variant={block.clientHeight > 40 ? ClipboardCopyVariant.expansion : null}
+              style={{ whiteSpace: 'pre-wrap' }}
+            >
+              {block.innerText}
+            </ClipboardCopy>,
+            block.parentNode
+          );
+        }
         sequenceNumber++;
       });
     }
