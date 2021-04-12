@@ -6,7 +6,7 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "5.7.2",
     "@patternfly/patternfly": "4.23.3",
-    "@patternfly/react-core": "4.32.1",
+    "@patternfly/react-core": "4.33.2",
     "@patternfly/react-icons": "4.5.0",
     "@patternfly/react-styles": "4.5.0",
     "@rh-uxd/appservices-patternfly-core": "1.0.5",
