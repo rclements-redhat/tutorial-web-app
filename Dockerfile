@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/rhoar-nodejs/nodejs-10
+FROM registry.access.redhat.com/ubi8/nodejs-12
 
 EXPOSE 5001
 
