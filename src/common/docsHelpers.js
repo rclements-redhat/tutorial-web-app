@@ -4,9 +4,9 @@ import { KIND_ROUTE } from '../services/openshiftServices';
 import { SERVICE_TYPES } from '../redux/constants/middlewareConstants';
 
 const getDocsForWalkthrough = (walkthroughId, middlewareServices, walkthroughResources) => {
-  if (window.OPENSHIFT_CONFIG.mockData) {
-    return {};
-  }
+  // if (window.OPENSHIFT_CONFIG.mockData) {
+  //   return {};
+  // }
 
   const userAttrs = getUserAttrs(walkthroughId, middlewareServices.provisioningUser);
   const middlewareAttrs = getMiddlewareServiceAttrs(middlewareServices);
@@ -86,7 +86,7 @@ const getMiddlewareServiceAttrs = middlewareServices => {
     'api-management-url': isWorkshopInstallation
       ? getWorkshopUrl(DEFAULT_SERVICES.THREESCALE, username, openshiftHost)
       : getUrlFromMiddlewareServices(middlewareServices, DEFAULT_SERVICES.THREESCALE),
-    'enmasse-url': getUrlFromMiddlewareServices(middlewareServices, DEFAULT_SERVICES.ENMASSE),
+    // 'enmasse-url': getUrlFromMiddlewareServices(middlewareServices, DEFAULT_SERVICES.ENMASSE),
     'amq-url': getUrlFromMiddlewareServices(middlewareServices, DEFAULT_SERVICES.AMQ),
     'user-sso-url': getUrlFromMiddlewareServices(middlewareServices, DEFAULT_SERVICES.USER_RHSSO),
     'enmasse-broker-url': middlewareServices.enmasseCredentials.url,

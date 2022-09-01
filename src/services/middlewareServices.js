@@ -23,7 +23,7 @@ import {
   statefulSetDef
 } from '../common/openshiftResourceDefinitions';
 import { SERVICE_TYPES, SERVICE_STATUSES } from '../redux/constants/middlewareConstants';
-import { watchAMQOnline } from './amqOnlineServices';
+// import { watchAMQOnline } from './amqOnlineServices';
 import { provisionFuseOnlineV4 } from './fuseOnlineServices';
 
 // The default services to watch.
@@ -116,8 +116,8 @@ const mockMiddlewareServices = (dispatch, mockData) => {
   if (!mockData || !mockData.serviceInstances) {
     return;
   }
-  const mockUsername = 'mockuser';
-  const mockLoginName = 'mockuser';
+  const mockUsername = 'localuser';
+  const mockLoginName = 'localuser';
   window.localStorage.setItem('currentUserName', mockUsername);
   window.localStorage.setItem('loginName', mockLoginName);
   mockData.serviceInstances.forEach(si => {
@@ -125,6 +125,10 @@ const mockMiddlewareServices = (dispatch, mockData) => {
       type: FULFILLED_ACTION(middlewareTypes.CREATE_WALKTHROUGH),
       payload: si
     });
+  });
+  dispatch({
+    type: FULFILLED_ACTION(middlewareTypes.GET_PROVISIONING_USER),
+    payload: {provisioningUser:mockUsername}
   });
 };
 
@@ -158,7 +162,7 @@ const manageServicesV4 = (dispatch, user, manifest) => {
           if (svcName === DEFAULT_SERVICES.FUSE) {
             acc.push(provisionFuseOnlineV4(dispatch));
           } else {
-            const { Host } = provisionedServices[svcName];
+            const { Host, Attributes } = provisionedServices[svcName];
             acc.push(
               Object.assign(
                 {},
@@ -166,7 +170,8 @@ const manageServicesV4 = (dispatch, user, manifest) => {
                   name: svcName,
                   status: SERVICE_STATUSES.PROVISIONED,
                   type: SERVICE_TYPES.PROVISIONED_SERVICE,
-                  url: Host
+                  url: Host,
+                  additionalAttributes: Attributes
                 }
               )
             );
@@ -191,11 +196,11 @@ const manageServicesV4 = (dispatch, user, manifest) => {
       })
       // Handle watching services
       .then(() => {
-        const nsName = getUsersSharedNamespaceName(user.username);
+        // const nsName = getUsersSharedNamespaceName(user.username);
         WATCH_SERVICES.forEach(svcName => {
-          if (svcName === DEFAULT_SERVICES.ENMASSE) {
-            watchAMQOnline(dispatch, user.username, nsName);
-          }
+          // if (svcName === DEFAULT_SERVICES.ENMASSE) {
+          //   watchAMQOnline(dispatch, user.username, nsName);
+          // }
         });
       })
   );

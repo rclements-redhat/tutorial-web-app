@@ -156,7 +156,7 @@ class WalkthroughStep {
   }
 
   static fromAdoc(adoc) {
-    const title = adoc.numbered ? `${getNumberedTitle(adoc)}. ${adoc.title}` : adoc.title;
+    const title = adoc.numbered ? `${getNumberedTitle(adoc)}. ${adoc.getTitle()}` : adoc.getTitle();
     const blocks = adoc.blocks.reduce((acc, b, i, blockList) => {
       if (WalkthroughVerificationBlock.canConvert(b)) {
         const remainingBlocks = blockList.slice(i + 1, blockList.length);
@@ -206,7 +206,7 @@ class WalkthroughResourceStep {
   static fromAdoc(adoc) {
     const service = adoc.getAttribute('serviceName');
     const html = adoc.blocks[0] ? adoc.blocks[0].convert() : '';
-    return new WalkthroughResourceStep(html, service, adoc.title);
+    return new WalkthroughResourceStep(html, service, adoc.getTitle());
   }
 }
 
@@ -240,7 +240,7 @@ class WalkthroughResource {
   static fromAdoc(adoc) {
     const service = adoc.getAttribute('serviceName');
     const html = adoc.blocks[0] ? adoc.blocks[0].convert() : '';
-    return new WalkthroughResource(html, service, adoc.title);
+    return new WalkthroughResource(html, service, adoc.getTitle());
   }
 }
 
@@ -294,7 +294,7 @@ class WalkthroughTask {
   }
 
   static fromAdoc(adoc) {
-    const title = adoc.numbered ? `${getNumberedTitle(adoc)}. ${adoc.title}` : adoc.title;
+    const title = adoc.numbered ? `${getNumberedTitle(adoc)}. ${adoc.getTitle()}` : adoc.getTitle();
     const time = parseInt(adoc.getAttribute(BLOCK_ATTR_TIME), 10) || 0;
     const collectedResources = [];
     this.collectTaskResources(adoc, collectedResources);

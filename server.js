@@ -546,6 +546,7 @@ function isOpenShift4() {
 function getMockConfigData() {
   return `window.OPENSHIFT_CONFIG = {
     masterUri: 'mock-openshift-console-url',
+    openshiftHost: 'https://mock-openshift-host-url',
     integreatlyVersion: '${process.env.INTEGREATLY_VERSION || ''}',
     openshiftVersion: ${openshiftVersion},
     threescaleWildcardDomain: '${process.env.THREESCALE_WILDCARD_DOMAIN || ''}',
