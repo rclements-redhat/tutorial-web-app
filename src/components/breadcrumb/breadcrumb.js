@@ -20,7 +20,7 @@ class Breadcrumb extends React.Component {
         <BreadcrumbItem to="#" onClick={this.homeClicked} id="breadcrumb-home">
           Home
         </BreadcrumbItem>
-        {isAllSolutionPattern && <BreadcrumbItem to="/solution-patterns">Solution Patterns</BreadcrumbItem>}
+        {/* {isAllSolutionPattern && <BreadcrumbItem to="/solution-patterns">Solution Patterns</BreadcrumbItem>} */}
         {threadName && !taskPosition && <BreadcrumbItem isActive>{threadName}</BreadcrumbItem>}
         {threadName &&
           taskPosition && (

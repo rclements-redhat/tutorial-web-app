@@ -109,7 +109,7 @@ class LandingPage extends React.Component {
             <Tab
               id="solutionPatternsTab"
               eventKey={0}
-              title="All Solution Patterns"
+              title="All Content"
               tabContentId="solutionPatternsTabSection"
               tabContentRef={this.contentRef2}
             />

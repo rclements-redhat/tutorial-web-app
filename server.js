@@ -451,6 +451,11 @@ function lookupWalkthroughResources(location) {
 
       const adocInfo = files.reduce((acc, dirName) => {
         const basePath = path.join(location.local, dirName);
+
+        if (!fs.lstatSync(basePath).isDirectory()) {
+          return acc;
+        }
+
         const adocPath = path.join(basePath, 'walkthrough.adoc');
         const jsonPath = path.join(basePath, 'walkthrough.json');
 
@@ -483,6 +488,7 @@ function lookupWalkthroughResources(location) {
  * @returns {Promise<any>}
  */
 function importWalkthroughAdoc(adocContext) {
+  console.log(adocContext)
   const { parentId, adocPath, dirName, basePath, walkthroughLocationInfo } = adocContext;
 
   return new Promise((resolve, reject) => {
