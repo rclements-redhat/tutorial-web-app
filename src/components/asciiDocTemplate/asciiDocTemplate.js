@@ -35,7 +35,7 @@ class AsciiDocTemplate extends React.Component {
         ReactDOM.render(
           <ClipboardCopy
             isReadOnly
-            variant={block.clientHeight > 40 ? ClipboardCopyVariant.expansion : null}
+            variant={block.clientHeight > 18 ? ClipboardCopyVariant.expansion : null}
             style={{ whiteSpace: 'pre-wrap' }}
           >
             {block.innerText}

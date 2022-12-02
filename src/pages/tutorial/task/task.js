@@ -59,8 +59,8 @@ class TaskPage extends React.Component {
             <ClipboardCopy
               id={sequenceNumber.toString()}
               isReadOnly
-              isExpanded={block.clientHeight > 40 ? true : false}
-              variant={block.clientHeight > 40 ? ClipboardCopyVariant.expansion : null}
+              isExpanded={block.clientHeight > 18 ? true : false}
+              variant={block.clientHeight > 18 ? ClipboardCopyVariant.expansion : null}
               style={{ whiteSpace: 'pre-wrap' }}
             >
               {block.innerText}
