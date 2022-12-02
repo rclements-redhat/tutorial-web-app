@@ -52,14 +52,14 @@ class AboutModal extends React.Component {
         >
           <TextContent>
             <TextList component="dl">
-              <TextListItem component="dt">RHMI Version</TextListItem>
-              <TextListItem component="dd">
+              {/* <TextListItem component="dt">RHMI Version</TextListItem> */}
+              {/* <TextListItem component="dd">
                 {window.OPENSHIFT_CONFIG ? window.OPENSHIFT_CONFIG.integreatlyVersion : ' '}
-              </TextListItem>
+              </TextListItem> */}
               <TextListItem component="dt">Console Version</TextListItem>
               <TextListItem component="dd">{pkgJson.version}</TextListItem>
-              <TextListItem component="dt">Cluster Name</TextListItem>
-              <TextListItem component="dd">{clusterId}</TextListItem>
+              {/* <TextListItem component="dt">Cluster Name</TextListItem>
+              <TextListItem component="dd">{clusterId}</TextListItem> */}
               <TextListItem component="dt">User Name</TextListItem>
               <TextListItem component="dd">{window.localStorage.getItem('currentUserName')}</TextListItem>
               <TextListItem component="dt">Browser Version</TextListItem>
