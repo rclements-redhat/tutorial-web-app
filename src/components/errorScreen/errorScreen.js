@@ -8,7 +8,7 @@ class ErrorScreen extends React.Component {
     this.state = { show: true };
   }
 
-  onTryAgain = () => {
+  static onTryAgain = () => {
     window.location.href = '/';
   };
 

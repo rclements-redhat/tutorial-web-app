@@ -23,7 +23,7 @@ import { connect, reduxActions } from '../../redux';
 import Breadcrumb from '../../components/breadcrumb/breadcrumb';
 
 class DevResourcesPage extends React.Component {
-  getClusterUrls = () => {
+  static getClusterUrls = () => {
     const uri = window.location.href;
 
     let clusterType = '';

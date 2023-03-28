@@ -44,8 +44,8 @@ const OpenShiftWatchEvents = Object.freeze({
 });
 
 class OpenShiftWatchEventListener {
-  _handler = () => {};
-  _errorHandler = () => {};
+  static _handler = () => {};
+  static _errorHandler = () => {};
 
   constructor(socket) {
     this._socket = socket;
@@ -76,8 +76,8 @@ class OpenShiftWatchEventListener {
 }
 
 class OpenShiftPollEventListener {
-  _handler = () => {};
-  _errorHandler = () => {};
+  static _handler = () => {};
+  static _errorHandler = () => {};
 
   constructor(request) {
     this._request = request;

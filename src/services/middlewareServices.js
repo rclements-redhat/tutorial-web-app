@@ -128,7 +128,7 @@ const mockMiddlewareServices = (dispatch, mockData) => {
   });
   dispatch({
     type: FULFILLED_ACTION(middlewareTypes.GET_PROVISIONING_USER),
-    payload: {provisioningUser:mockUsername}
+    payload: { provisioningUser: mockUsername }
   });
 };
 

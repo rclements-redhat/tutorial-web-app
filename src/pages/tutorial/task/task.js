@@ -3,7 +3,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
-import { translate } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
+
+/* import { withTranslation } from 'react-i18next'; */
 import {
   Button,
   Card,
@@ -54,12 +56,12 @@ class TaskPage extends React.Component {
       let sequenceNumber = 1;
       codeBlocks.forEach(block => {
         console.log(block.children);
-        if (block.children.length > 0 && block.children[0].nodeName === "CODE") {
+        if (block.children.length > 0 && block.children[0].nodeName === 'CODE') {
           ReactDOM.render(
             <ClipboardCopy
               id={sequenceNumber.toString()}
               isReadOnly
-              isExpanded={block.clientHeight > 18 ? true : false}
+              isExpanded={block.clientHeight > 18}
               variant={block.clientHeight > 18 ? ClipboardCopyVariant.expansion : null}
               style={{ whiteSpace: 'pre-wrap' }}
             >
@@ -166,7 +168,7 @@ class TaskPage extends React.Component {
     }, []);
   };
 
-  getVerificationsForStep = (stepId, step) => {
+  static getVerificationsForStep = (stepId, step) => {
     if (!step.blocks) {
       return [];
     }
@@ -182,10 +184,10 @@ class TaskPage extends React.Component {
   // Returns the total steps that a walkthrough has. The number of steps is defined by the
   // number of verifications it has. Because we only parse the actual walkthrough in render
   // we have to rely on a regular expression to get the number of verification annotations
-  getTotalSteps = data => (data.match(/\[type=verification]/g) || []).length;
+  static getTotalSteps = data => (data.match(/\[type=verification]/g) || []).length;
 
   // Iterates through the threadProgress object and count every `true` value on every task
-  getCompletedSteps = threadProgress => {
+  static getCompletedSteps = threadProgress => {
     // We need to filter `progress` and `task` because they are appended to the same object
     const stepProgress = Object.keys(threadProgress).filter(s => s !== 'progress' && s !== 'task');
     return stepProgress.reduce((acc, step) => {
@@ -194,7 +196,7 @@ class TaskPage extends React.Component {
     }, 0);
   };
 
-  docsAttributesProgress = attrs => {
+  static docsAttributesProgress = attrs => {
     let found = 0;
     const requirements = {
       '1': ['spring-boot-url', 'node-js-url'],
@@ -236,7 +238,7 @@ class TaskPage extends React.Component {
   getDocsAttributes = walkthroughId =>
     getDocsForWalkthrough(walkthroughId, this.props.middlewareServices, this.props.walkthroughResources);
 
-  getAMQCredential = (middlewareServices, name) => {
+  static getAMQCredential = (middlewareServices, name) => {
     if (!middlewareServices || !middlewareServices.amqCredentials || !middlewareServices.amqCredentials[name]) {
       return null;
     }
@@ -277,7 +279,7 @@ class TaskPage extends React.Component {
     this.updateStoredProgressForCurrentTask(o);
   };
 
-  taskVerificationStatus = (verifications, idsToVerify) => {
+  static taskVerificationStatus = (verifications, idsToVerify) => {
     if (!idsToVerify || idsToVerify.length === 0) {
       return true;
     }
@@ -642,7 +644,7 @@ const ConnectedTaskPage = withRouter(
   connect(
     mapStateToProps,
     mapDispatchToProps
-  )(translate()(TaskPage))
+  )(withTranslation()(TaskPage))
 );
 
 export { ConnectedTaskPage as default, ConnectedTaskPage, TaskPage };

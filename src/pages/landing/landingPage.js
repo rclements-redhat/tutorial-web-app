@@ -13,7 +13,7 @@ import { DEFAULT_SERVICES } from '../../common/serviceInstanceHelpers';
 // import { getOpenshiftHost } from '../../common/docsHelpers';
 import {
   getUsersSharedNamespaceName,
-  getUsersSharedNamespaceDisplayName,
+  getUsersSharedNamespaceDisplayName
   // isOpenShift4
 } from '../../common/openshiftHelpers';
 

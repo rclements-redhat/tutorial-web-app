@@ -1,15 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import i18next from 'i18next';
-import XHR from 'i18next-xhr-backend';
-import { I18nextProvider, reactI18nextModule } from 'react-i18next';
+import HttpApi from 'i18next-http-backend';
+import { I18nextProvider, initReactI18next } from 'react-i18next';
 
 class I18nProvider extends React.Component {
   constructor(props) {
     super(props);
     this.i18n = i18next
-      .use(XHR)
-      .use(reactI18nextModule)
+      .use(HttpApi)
+      .use(initReactI18next)
       .init({
         backend: {
           loadPath: `/locales/${props.locale}.json`

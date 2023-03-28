@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { BreadcrumbItem, Breadcrumb as PfBreadcrumb } from '@patternfly/react-core';
 import { withRouter } from 'react-router-dom';
 
@@ -14,7 +14,8 @@ class Breadcrumb extends React.Component {
   };
 
   render() {
-    const { t, threadName, threadId, totalTasks, taskPosition, isAllSolutionPattern } = this.props;
+    //    const { t, threadName, threadId, totalTasks, taskPosition, isAllSolutionPattern } = this.props;
+    const { t, threadName, threadId, totalTasks, taskPosition } = this.props;
     return (
       <PfBreadcrumb aria-label="Breadcrumb">
         <BreadcrumbItem to="#" onClick={this.homeClicked} id="breadcrumb-home">
@@ -52,9 +53,9 @@ Breadcrumb.propTypes = {
   /** Called when the 'home' button is clicked */
   homeClickedCallback: PropTypes.func,
   /** Called when the 'solution patterns' button is clicked */
-  solutionPatternsClickedCallback: PropTypes.func,
+  solutionPatternsClickedCallback: PropTypes.func
   /** Checks to see if all solutions pattern is in path */
-  isAllSolutionPattern: PropTypes.bool
+  /** isAllSolutionPattern: PropTypes.bool */
 };
 
 Breadcrumb.defaultProps = {
@@ -64,10 +65,10 @@ Breadcrumb.defaultProps = {
   taskPosition: null,
   totalTasks: null,
   homeClickedCallback: undefined,
-  solutionPatternsClickedCallback: undefined,
-  isAllSolutionPattern: false
+  solutionPatternsClickedCallback: undefined
+  // isAllSolutionPattern: false
 };
 
-const RoutedBreadcrumb = withRouter(translate()(Breadcrumb));
+const RoutedBreadcrumb = withRouter(withTranslation()(Breadcrumb));
 
 export { RoutedBreadcrumb as default, Breadcrumb };

@@ -15,30 +15,30 @@ class AboutModal extends React.Component {
     super(props);
 
     this.state = {};
+    this.clusterType = '';
+    this.logoName = '';
   }
 
   getLogo = () => {
-    let clusterType = '';
-    let logoName = '';
     if (window.OPENSHIFT_CONFIG) {
-      clusterType = window.OPENSHIFT_CONFIG.mockData ? 'localhost' : window.OPENSHIFT_CONFIG.clusterType;
-      if (clusterType === 'poc') {
-        logoName = managedIntegrationLogo;
-      } else if (clusterType === 'osd') {
-        logoName = managedIntegrationLogo;
+      this.clusterType = window.OPENSHIFT_CONFIG.mockData ? 'localhost' : window.OPENSHIFT_CONFIG.clusterType;
+      if (this.clusterType === 'poc') {
+        this.logoName = managedIntegrationLogo;
+      } else if (this.clusterType === 'osd') {
+        this.logoName = managedIntegrationLogo;
       } else {
-        logoName = redHatLogo;
+        this.logoName = redHatLogo;
       }
     }
-    return logoName;
+    return this.logoName;
   };
 
   render() {
     const { isOpen, closeAboutModal } = this.props;
     const browser = detect();
 
-    const urlParts = window.location.host.split('.');
-    const [, , clusterId] = urlParts;
+    // const urlParts = window.location.host.split('.');
+    // const [, , clusterId] = urlParts;
 
     return (
       <React.Fragment>

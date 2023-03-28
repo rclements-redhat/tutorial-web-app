@@ -70,7 +70,7 @@ class Masthead extends React.Component {
     // }
   }
 
-  onLogoutUser = () => {
+  static onLogoutUser = () => {
     if (window.OPENSHIFT_CONFIG.mockData) {
       window.localStorage.clear();
       window.location.href = '/';
@@ -123,7 +123,7 @@ class Masthead extends React.Component {
     });
   }
 
-  getLogo = () => {
+  static getLogo = () => {
     let clusterType = '';
     let logoName = '';
     // TODO: ENABLE ONCE WE ARE READY TO RELEASE CROSS CONSOLE.

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
-import { translate } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import {
   Button,
   Card,
@@ -258,7 +258,7 @@ const mapStateToProps = state => ({
 const ConnectedTutorialPage = connect(
   mapStateToProps,
   mapDispatchToProps
-)(translate()(TutorialPage));
+)(withTranslation()(TutorialPage));
 
 const RoutedTutorialPage = withRouter(ConnectedTutorialPage);
 
